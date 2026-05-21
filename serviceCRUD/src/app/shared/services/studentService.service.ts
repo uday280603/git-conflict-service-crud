@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Istudent } from '../models/Istudent';
+import { IresStudent, Istudent } from '../models/Istudent';
 import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class StudentService {
-  studentArr : Istudent[] = [
+  studentArr: Istudent[] = [
     {
       stdId: 101,
       fname: 'Rahul',
@@ -27,10 +27,23 @@ export class StudentService {
     },
   ];
 
-  constructor() {}
+  constructor() { }
 
-  fetchAllStudent() : Observable <Istudent[]>{
+  fetchAllStudent(): Observable<Istudent[]> {
     return of(this.studentArr)
+
+  }
+
+  //remove
+  onRemove(removeId: number): Observable<IresStudent> {
+
+    let GETiNDEX = this.studentArr.findIndex(s => s.stdId === removeId);
+    let arr = this.studentArr.splice(GETiNDEX, 1);
+
+    return of({
+      msg: `student with id ${removeId} removed successfully..!`,
+      data: arr[0]
+    })
 
   }
 }
