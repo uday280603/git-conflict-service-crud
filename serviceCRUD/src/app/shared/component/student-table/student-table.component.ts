@@ -30,4 +30,10 @@ export class StudentTableComponent implements OnInit {
 
   }
 
+  onEdit(editObj: Istudent){
+      console.log(editObj)
+      this._studentservice.editTodoSub$.next(editObj)
+
+  }
+
 }
