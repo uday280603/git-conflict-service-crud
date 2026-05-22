@@ -59,6 +59,7 @@ export class StudentFormComponent implements OnInit {
 ...this.studForm.value, stdId: Date.now() 
       }
       this.studentService.createStudent(stdObj)
+      this.studForm.reset()
     }
   }
 
