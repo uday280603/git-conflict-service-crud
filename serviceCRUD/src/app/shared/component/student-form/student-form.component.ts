@@ -13,7 +13,7 @@ export class StudentFormComponent implements OnInit {
   @ViewChild('studForm') studForm !: NgForm 
   isInEditMode : boolean = false
   constructor(
-    private _todoService : StudentService
+    private _todoService : StudentService,private studentService : StudentService
   ) { }
 
   ngOnInit(): void {
@@ -21,7 +21,7 @@ export class StudentFormComponent implements OnInit {
     this.onEdit()
   }
   
-  constructor(private studentService : StudentService) { }
+
 
   onEdit(){
     this._todoService.editTodoSub$.subscribe({

@@ -35,7 +35,7 @@ export class StudentService {
     return of(this.studentArr)
   }
 
-  updatedStd(updatedStd: Istudent): Observable<IresStudent>{
+  updatedStd(updatedStd: Istudent): Observable<IresStudent<Istudent>>{
     let getIndex = this.studentArr.findIndex( s => s.stdId === updatedStd.stdId)
     this.studentArr[getIndex] = updatedStd
     return of({
@@ -55,10 +55,11 @@ export class StudentService {
 
 
 
-  }
+}
+  
 
   //remove
-  onRemove(removeId: number): Observable<IresStudent> {
+  onRemove(removeId: number): Observable<IresStudent<Istudent>> {
 
     let GETiNDEX = this.studentArr.findIndex(s => s.stdId === removeId);
     let arr = this.studentArr.splice(GETiNDEX, 1);
@@ -69,4 +70,5 @@ export class StudentService {
     })
 
   }
+
 }
