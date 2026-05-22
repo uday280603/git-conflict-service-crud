@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Istudent } from '../models/Istudent';
+import { IresStudent, Istudent } from '../models/Istudent';
 import { Observable, of } from 'rxjs';
 
 @Injectable({
@@ -33,4 +33,13 @@ export class StudentService {
     return of(this.studentArr)
 
   }
-}
+  createStudent (student: Istudent) : Observable<IresStudent<Istudent>>{
+    this.studentArr.push(student)
+  return of ({
+    msg : `The student is id ${student.stdId} is added successfully`,
+    data : student
+  })
+
+
+
+}}
