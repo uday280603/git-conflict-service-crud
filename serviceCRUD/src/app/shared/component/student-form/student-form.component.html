@@ -1,6 +1,6 @@
 <div class="card">
   <div class="card-body">
-    <form>
+    <form #studForm="ngForm" (ngSubmit)="onStudentSubmit()">
       <div class="form-group">
         <label for="fname">First Name</label>
         <input ngModel required name="fname" type="text" class="form-control" />
@@ -40,7 +40,7 @@
           <option value="false">No</option>
         </select>
       </div>
-      <button mat-raised-button color="primary" class="w-100">Add Student</button>
+      <button mat-raised-button color="primary" class="w-100" [disabled]="studForm.invalid">Add Student</button>
     </form>
   </div>
 </div>

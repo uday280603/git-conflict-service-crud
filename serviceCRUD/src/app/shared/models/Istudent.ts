@@ -9,7 +9,7 @@ export interface Istudent {
 }
 
 
-export interface IresStudent{
+export interface IresStudent<T>{
     msg : string;
-    data : Istudent
+    data : T
 }

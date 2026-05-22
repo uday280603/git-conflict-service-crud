@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { Istudent } from '../../models/Istudent';
+import { StudentService } from '../../services/studentService.service';
 
 @Component({
   selector: 'app-student-form',
@@ -7,9 +10,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StudentFormComponent implements OnInit {
 
-  constructor() { }
+  @ViewChild("studForm") studForm !: NgForm
+  constructor(private studentService : StudentService) { }
 
   ngOnInit(): void {
+  }
+  onStudentSubmit(){
+    if (this.studForm.valid){
+      let stdObj : Istudent= {
+...this.studForm.value, stdId: Date.now() 
+      }
+      this.studentService.createStudent(stdObj)
+    }
   }
 
 }

@@ -33,6 +33,16 @@ export class StudentService {
     return of(this.studentArr)
 
   }
+  createStudent (student: Istudent) : Observable<IresStudent<Istudent>>{
+    this.studentArr.push(student)
+  return of ({
+    msg : `The student is id ${student.stdId} is added successfully`,
+    data : student
+  })
+
+
+
+}}
 
   //remove
   onRemove(removeId: number): Observable<IresStudent> {
