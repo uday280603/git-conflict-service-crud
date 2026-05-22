@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { IresStudent, Istudent } from '../models/Istudent';
-import { Observable, of } from 'rxjs';
+import { Observable, of, Subject } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root',
@@ -26,13 +27,25 @@ export class StudentService {
       isActive: false,
     },
   ];
+   editTodoSub$ : Subject<Istudent> = new Subject<Istudent>()
 
   constructor() { }
 
   fetchAllStudent(): Observable<Istudent[]> {
     return of(this.studentArr)
-
   }
+
+  updatedStd(updatedStd: Istudent): Observable<IresStudent>{
+    let getIndex = this.studentArr.findIndex( s => s.stdId === updatedStd.stdId)
+    this.studentArr[getIndex] = updatedStd
+    return of({
+      msg : `The student with id ${updatedStd.stdId} is updated successfully !!!`,
+      data : updatedStd
+    })
+  }
+
+
+
   createStudent (student: Istudent) : Observable<IresStudent<Istudent>>{
     this.studentArr.push(student)
   return of ({
@@ -42,7 +55,7 @@ export class StudentService {
 
 
 
-}}
+  }
 
   //remove
   onRemove(removeId: number): Observable<IresStudent> {

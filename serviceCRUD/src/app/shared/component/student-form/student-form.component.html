@@ -40,7 +40,14 @@
           <option value="false">No</option>
         </select>
       </div>
-      <button mat-raised-button color="primary" class="w-100" [disabled]="studForm.invalid">Add Student</button>
+      <button
+      *ngIf="!isInEditMode"
+      mat-raised-button color="primary" class="w-100"[disabled]="studForm.invalid">Add Student</button>
+      <button
+      (click)="onUpdate()" 
+      *ngIf="isInEditMode"
+      mat-raised-button color="warn" class="w-100">Update Student</button>
+     
     </form>
   </div>
 </div>
