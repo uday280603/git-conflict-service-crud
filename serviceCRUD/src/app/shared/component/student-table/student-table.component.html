@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card" *ngIf="getAllStudents.length > 0; else nostd">
   <div class="card-body">
     <div class="table-responsive">
       <table class="table table-bordered">
@@ -24,14 +24,12 @@
 
             <td>{{ std.isActive ? "Yes" : "No" }}</td>
             <td>
-              <button 
-              (click)="onEdit(std)"
-              mat-mini-fab color="primary">
+              <button (click)="onEdit(std)" mat-mini-fab color="primary">
                 <mat-icon>edit</mat-icon>
               </button>
             </td>
             <td>
-                <button mat-mini-fab color="warn" (click)="onRemoveStudent(std.stdId)">
+              <button mat-mini-fab color="warn" (click)="onRemoveStudent(std.stdId)">
                 <mat-icon>delete</mat-icon>
               </button>
             </td>
@@ -41,3 +39,11 @@
     </div>
   </div>
 </div>
+
+
+
+<ng-template #nostd>
+  <p class="alert alert-info">
+    No Students !!!
+  </p>
+</ng-template>
