@@ -10,33 +10,33 @@ import { NgForm } from '@angular/forms';
 })
 export class StudentFormComponent implements OnInit {
   editTodo !: Istudent
-  @ViewChild('stdForm') stdForm !: NgForm 
+  @ViewChild('studForm') studForm !: NgForm 
   isInEditMode : boolean = false
   constructor(
     private _todoService : StudentService
   ) { }
 
-  ngOnInit(
-
-  ): void {
+  ngOnInit(): void {
 
     this.onEdit()
   }
+  
+  constructor(private studentService : StudentService) { }
 
   onEdit(){
     this._todoService.editTodoSub$.subscribe({
       next : data => {
         this.editTodo = data
-        this.stdForm.form.patchValue(data)
+        this.studForm.form.patchValue(data)
         this.isInEditMode = true
       }
     })
   }
 
   onUpdate(){
-    if(this.stdForm.valid){
+    if(this.studForm.valid){
       let updatedStd : Istudent = {
-        ...this.stdForm.value,
+        ...this.studForm.value,
         stdId : this.editTodo.stdId
       }
       console.log(updatedStd);
@@ -44,13 +44,21 @@ export class StudentFormComponent implements OnInit {
       .subscribe({
         next : res => {
           console.log(res);
-          this.stdForm.reset()
+          this.studForm.reset()
           this.isInEditMode = false
         },
         error : err => {
           console.log(err);        
         }
       })
+    }
+  }
+  onStudentSubmit(){
+    if (this.studForm.valid){
+      let stdObj : Istudent= {
+...this.studForm.value, stdId: Date.now() 
+      }
+      this.studentService.createStudent(stdObj)
     }
   }
 

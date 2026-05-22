@@ -2,11 +2,12 @@ import { Injectable } from '@angular/core';
 import { IresStudent, Istudent } from '../models/Istudent';
 import { Observable, of, Subject } from 'rxjs';
 
+
 @Injectable({
   providedIn: 'root',
 })
 export class StudentService {
-  studentArr : Istudent[] = [
+  studentArr: Istudent[] = [
     {
       stdId: 101,
       fname: 'Rahul',
@@ -28,9 +29,9 @@ export class StudentService {
   ];
    editTodoSub$ : Subject<Istudent> = new Subject<Istudent>()
 
-  constructor() {}
+  constructor() { }
 
-  fetchAllStudent() : Observable <Istudent[]>{
+  fetchAllStudent(): Observable<Istudent[]> {
     return of(this.studentArr)
   }
 
@@ -45,4 +46,27 @@ export class StudentService {
 
 
 
+  createStudent (student: Istudent) : Observable<IresStudent<Istudent>>{
+    this.studentArr.push(student)
+  return of ({
+    msg : `The student is id ${student.stdId} is added successfully`,
+    data : student
+  })
+
+
+
+  }
+
+  //remove
+  onRemove(removeId: number): Observable<IresStudent> {
+
+    let GETiNDEX = this.studentArr.findIndex(s => s.stdId === removeId);
+    let arr = this.studentArr.splice(GETiNDEX, 1);
+
+    return of({
+      msg: `student with id ${removeId} removed successfully..!`,
+      data: arr[0]
+    })
+
+  }
 }

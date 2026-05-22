@@ -9,6 +9,8 @@ import { StudentTableComponent } from './shared/component/student-table/student-
 import { StudentFormComponent } from './shared/component/student-form/student-form.component';
 import { GetConfiormationComponent } from './shared/component/get-confiormation/get-confiormation.component';
 import { FormsModule, NgForm } from '@angular/forms';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,8 @@ import { FormsModule, NgForm } from '@angular/forms';
     MatButtonModule,
     MatIconModule,
     FormsModule
+    MatDialogModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
