@@ -8,7 +8,7 @@ import { StudentDashboardComponent } from './shared/component/student-dashboard/
 import { StudentTableComponent } from './shared/component/student-table/student-table.component';
 import { StudentFormComponent } from './shared/component/student-form/student-form.component';
 import { GetConfiormationComponent } from './shared/component/get-confiormation/get-confiormation.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 

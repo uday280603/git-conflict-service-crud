@@ -35,6 +35,13 @@ export class StudentTableComponent implements OnInit {
 
   }
 
+  onEdit(editObj: Istudent){
+      console.log(editObj)
+      this._studentservice.editTodoSub$.next(editObj)
+
+  }
+
+
   onRemoveStudent(removeId : number){
     let config = new MatDialogConfig()
     config.width = '400px'
